@@ -1,5 +1,4 @@
-# for build
-FROM python:3.8-buster as builder
+FROM python:3.8-buster
 
 WORKDIR /app
 
@@ -7,4 +6,4 @@ COPY . /app
 
 RUN pip install -r requirements.txt
 
-CMD ["python", "app.py"]
+CMD ["gunicorn", "app:app", "-b", "0.0.0.0:5000"]
